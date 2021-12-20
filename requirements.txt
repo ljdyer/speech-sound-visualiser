@@ -1,0 +1,4 @@
+numba==0.53
+numpy==1.21.4
+librosa
+matplotlib
