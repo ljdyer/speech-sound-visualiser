@@ -1,4 +1,6 @@
 
+# TODO put each section into a separate function 
+
 # Adapted from the following sources:
 # https://medium.com/analytics-vidhya/understanding-the-mel-spectrogram-fca2afa2ce53
 # https://stackoverflow.com/a/43347984/17568469
@@ -31,9 +33,9 @@ point_duration = signal_length * 1000 / sample_points   # Duration of an sample 
 # Generate list of time points (in ms) to display on x axis
 time_points = [ x / sample_rate * 1000 for x in range(sample_points)]
 
+# Plot
 quantized_title = f"Your {round(signal_length, 3)}s audio recording quantized " + \
-                  "as 8-bit integer values."
-
+                  "as 8-bit integer values"
 plt.plot(time_points, sound_data)
 plt.title(quantized_title)
 plt.xlabel('Time (ms)')
@@ -42,8 +44,8 @@ plt.show()
 
 # ==============================================================================
 
-"""Get spectrum by converting the signal from the time domain into the
-frequency domain by Fourier transform
+"""Get spectrum for a windowed segment by converting the signal from the time
+domain into the frequency domain by Fourier transform
 
 From http://librosa.org/doc/main/generated/librosa.stft.html: Short-time
 Fourier transform (STFT). The STFT represents a signal in the time-frequency
@@ -62,7 +64,6 @@ fft_end = fft_start + n_fft
 
 # Get duration and position to display to user
 
-# ====================
 def ms_to_sec_display(ms: float) -> str:
     """Convert time in miliseconds to string in format mm:ss.sss"""
 
@@ -77,15 +78,32 @@ def ms_to_sec_display(ms: float) -> str:
 time_start = time_points[fft_start]
 time_end = time_points[fft_end]
 duration = round(time_end - time_start)
-spectrum_title = f"Spectrum of the {duration}ms window of audio at " + \
-                 f"{ms_to_sec_display(time_start)}-{ms_to_sec_display(time_end)}"
 
 # Get spectrum
 spectrum = np.abs(librosa.stft(sound_data[fft_start:fft_end],
                                n_fft=n_fft, hop_length = n_fft+1))
 
-plt.plot(spectrum)
-plt.title(spectrum_title)
-plt.xlabel('Frequency bin')
-plt.ylabel('Amplitude')
+# Plot
+spectrum_title = f"Spectrum of the {duration}ms window of audio at " + \
+                 f"{ms_to_sec_display(time_start)}-{ms_to_sec_display(time_end)}"
+# plt.plot(spectrum)
+# plt.title(spectrum_title)
+# plt.xlabel('Frequency bin')
+# plt.ylabel('Amplitude')
+# plt.show()
+
+
+# ==============================================================================
+
+# Compute spectrogram
+spec = np.abs(librosa.stft(sound_data, hop_length=512))
+
+# Convert colour dimension to decibels (essentially log scale of amplitude)
+spec = librosa.amplitude_to_db(spec, ref=np.max)
+
+# Plot
+librosa.display.specshow(spec, sr=sample_rate, x_axis='time', y_axis='log')
+plt.colorbar(format='%+2.0f dB')
+plt.title('Spectrogram of your audio recording')
 plt.show()
+# TODO work out why time is different
