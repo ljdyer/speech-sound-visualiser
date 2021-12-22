@@ -11,7 +11,7 @@ Go to the [Heroku app page](https://speech-sound-visualiser.herokuapp.com/) and 
 ## Example output
 
 <a href="https://speech-sound-visualiser.herokuapp.com/"><img src="readme-img/visuals.PNG"></img></a>
-<a href="https://speech-sound-visualiser.herokuapp.com/"><img src="readme-img/mel.PNG"></img></a>
+<a href="https://speech-sound-visualiser.herokuapp.com/" align="center"><img src="readme-img/mel.PNG"></img></a>
 
 ## How it works
 
