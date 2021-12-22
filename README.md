@@ -1,6 +1,6 @@
-# Speech sound visualiser
+# Speech Sound Visualiser
 
-Speech sound visualiser is a Heroku Flask app that generates and displays a raw waveform plot, spectrum plot, and regular and mel spectrographs of a speech sound that you record.
+Speech Sound Visualiser is a Heroku Flask app that generates and displays a raw waveform plot, spectrum plot, and regular and mel spectrographs of a speech sound that you record.
 
 ## How to use it
 
