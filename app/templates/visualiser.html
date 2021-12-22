@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/static/css/style.css">
+<script src="/static/js/main.js"></script>
+<script src="/static/js/recorder.js"></script>
+<script src="/static/js/recorderWorker.js"></script>
+
+</head>
+    <h1>Speech Sound Visualiser</h1>
+    <div class="small-space">
+        <button id="start" class="btn btn-success" onclick="startRecording()" disabled>Start</button>
+        <button id="stop" class="btn btn-danger" onclick="stopRecording()" disabled>Stop</button>
+    </div>
+    <hr>
+    <div id="loading" style="display:none">
+        <p>Generating plots...</p>
+    </div>
+    <div id="show-plots" style="display:none">
+        <p id="you-said"></p>
+        <img id="img-waveform" src="/static/images/waveform.png">
+        <img id="img-spectrum" src="/static/images/spectrum.png">
+        <img id="img-spectrogram" src="/static/images/spectrogram.png">
+        <img id="img-mel-spectrogram" src="/static/images/mel_spectrogram.png">
+    </div>
+</body>
+
+</html>
