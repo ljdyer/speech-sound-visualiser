@@ -14,16 +14,18 @@ function doneEncoding(soundBlob) {
     document.getElementById("loading").style.display = "block";
     fetch('/audio', {method: "POST", body: soundBlob}).then(response => response.text().then(text => {
         if (text == "ERR"){
-            // Handle error
+            document.getElementById("error-msg").style.display = "block";
         }
         else{
+            // Hide loading message
             document.getElementById("loading").style.display = "none";
-            document.getElementById("you-said").innerHTML = text;
-            // Refresh images
+            // Refresh images (&t ensures that cache images are not used)
             document.getElementById("img-waveform").src = "/static/images/waveform.png?t=" + new Date().getTime();
             document.getElementById("img-spectrum").src = "/static/images/spectrum.png?t=" + new Date().getTime();
             document.getElementById("img-spectrogram").src = "/static/images/spectrogram.png?t=" + new Date().getTime();
             document.getElementById("img-mel-spectrogram").src = "/static/images/mel_spectrogram.png?t=" + new Date().getTime();
+            // Show plots
+            document.getElementById("you-said").innerHTML = text;
             document.getElementById("show-plots").style.display = "block";
         };
     }));

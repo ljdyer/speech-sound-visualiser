@@ -30,12 +30,14 @@ def audio():
             text = r.recognize_google(audio_data, language='en-GB', show_all=True)
             transcription = text['alternative'][0]['transcript']
             confidence = text['alternative'][0]['confidence']
-            return_text = f"It sounds like you said '{transcription}' (confidence: {confidence*100:.2f}%)"
+            return_text = f"""It sounds like you said <span class="said-text">'{transcription}'</span> (confidence: {confidence*100:.2f}%)"""
         except:
-            return_text = "Could not detect what you said."
+            return_text = "Google Web Speech API could not detect any speech."
     
-    print(current_app.root_path + 'static')
-    save_plots('upload/audio.wav', os.path.join(current_app.root_path + '/static/images'))
+    try:
+        save_plots('upload/audio.wav', os.path.join(current_app.root_path + '/static/images'))
+    except:
+        return_text = "ERR"
         
     return str(return_text)
 
