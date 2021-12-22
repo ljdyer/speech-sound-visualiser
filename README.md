@@ -25,7 +25,7 @@ The audio data is sent via a POST request to the Flask app, which saves image fi
 
 - The Python [SpeechRecognition](https://pypi.org/project/SpeechRecognition/) library is used to interface with the Google Web Speech API.
 - Matt Diamond's [Recorderjs](https://github.com/mattdiamond/Recorderjs) plugin is used to record and export audio.
-- https://medium.com/analytics-vidhya/understanding-the-mel-spectrogram-fca2afa2ce53 was a VERY useful resource when attempting to understand the various processing stages and how to implement them using librosa.
+- https://medium.com/analytics-vidhya/understanding-the-mel-spectrogram-fca2afa2ce53 was a VERY useful resource when getting to understand the various processing stages and how to implement them using librosa.
 
 ## References
 
