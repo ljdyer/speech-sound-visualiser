@@ -6,11 +6,12 @@ Speech Sound Visualiser is a Heroku Flask app that generates and displays a raw 
 
 Go to the [Heroku app page](https://speech-sound-visualiser.herokuapp.com/) and follow the instructions on the page.
 
-<a href="https://speech-sound-visualiser.herokuapp.com/"><img src="readme-img/"></img></a>
+<a href="https://speech-sound-visualiser.herokuapp.com/"><img src="readme-img/homepage.png"></img></a>
 
 ## Example output
 
-<a href="https://speech-sound-visualiser.herokuapp.com/"><img src="readme-img/"></img></a>
+<a href="https://speech-sound-visualiser.herokuapp.com/"><img src="readme-img/visuals.PNG"></img></a>
+<a href="https://speech-sound-visualiser.herokuapp.com/"><img src="readme-img/mel.PNG"></img></a>
 
 ## How it works
 
