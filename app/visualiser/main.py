@@ -1,6 +1,3 @@
-
-# TODO put each section into a separate function 
-
 # Adapted from the following sources:
 # https://medium.com/analytics-vidhya/understanding-the-mel-spectrogram-fca2afa2ce53
 # https://towardsdatascience.com/getting-to-know-the-mel-spectrogram-31bca3e2d9d0
