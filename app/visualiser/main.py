@@ -89,8 +89,9 @@ def save_plots(filename: str, save_path: str):
     time_points = [ x / sample_rate * 1000 for x in range(num_points)]
 
     # Save plot
-    waveform_title = f"Your {round(signal_length, 3)}s audio recording quantized " + \
-                    f"as 8-bit integer values (sampling rate: {sample_rate}Hz)"
+    waveform_title = \
+        f"Your {round(signal_length, 3)}s audio recording quantized " + \
+        f"as 8-bit integer values (sampling rate: {sample_rate}Hz)"
     save_matplotlib_plot(time_points, sound_data_quantized,
                          xlabel='Time (ms)', ylabel='Amplitude',
                          title=waveform_title, filename=WAVEFORM_FILENAME)
@@ -108,15 +109,15 @@ def save_plots(filename: str, save_path: str):
 
     # # n_fft is length of windowed signal after padding with zeroes. Librosa
     # # recommends n_fft=512 for speech processing, which corresponds to 23
-    # # miliseconds at a sample rate of 22050 Hz (the default target sample rate for
-    # # librosa.load).
+    # # miliseconds at a sample rate of 22050 Hz (the default target sample
+    # rate for librosa.load).
 
     sound_data, sample_rate = librosa.load(filename)
     num_points = len(sound_data)
     time_points = [ x / sample_rate * 1000 for x in range(num_points)]
     n_fft = 512
-    # Choose a frame in the middle of the audio file to maximise the chance that
-    # it corresponds to speech
+    # Choose a frame in the middle of the audio file to maximise the chance
+    # that it corresponds to speech
     fft_start = math.floor(num_points / 2)
     fft_end = fft_start + n_fft
 
@@ -131,8 +132,9 @@ def save_plots(filename: str, save_path: str):
                                 n_fft=n_fft, hop_length = n_fft+1))
 
     # *** Save plot of spectrum ***
-    spectrum_title = f"Spectrum of the {duration}ms window of audio at " + \
-                    f"{ms_to_sec_display(time_start)}-{ms_to_sec_display(time_end)}"
+    spectrum_title = \
+        f"Spectrum of the {duration}ms window of audio at " + \
+        f"{ms_to_sec_display(time_start)}-{ms_to_sec_display(time_end)}"
     save_matplotlib_plot(spectrum, xlabel='Frequency bin', ylabel='Amplitude',
                          title=spectrum_title, filename=SPECTRUM_FILENAME)
 
@@ -141,14 +143,17 @@ def save_plots(filename: str, save_path: str):
 
     # Compute spectrogram
     spectrogram = np.abs(librosa.stft(sound_data, hop_length=512))
-    # Convert colour dimension to decibels (essentially log scale of amplitude)
+    # Convert colour dimension to decibels (essentially log scale of 
+    # amplitude)
     spectrogram = librosa.amplitude_to_db(spectrogram, ref=np.max)
 
     # **** Save plot of spectrogram ***
 
     spectrogram_title = 'Spectrogram of your audio recording'
-    save_librosa_specshow(spectrogram, sr=sample_rate, x_axis='time', y_axis='log',
-                          title=spectrogram_title, filename=SPECTROGRAM_FILENAME)
+    save_librosa_specshow(
+        spectrogram, sr=sample_rate, x_axis='time', y_axis='log',
+        title=spectrogram_title, filename=SPECTROGRAM_FILENAME
+    )
 
 
     # === Mel spectrogram ===
@@ -168,11 +173,13 @@ def save_plots(filename: str, save_path: str):
                                                     n_mels=32,
                                                     fmax=8000,
                                                     fmin=300)
-    # Convert colour dimension to decibels (essentially log scale of amplitude)
+    # Convert colour dimension to decibels (essentially log scale of
+    # amplitude)
     mel_spectrogram = librosa.power_to_db(mel_spectrogram, ref=np.max)
 
     # Save plot
-    mel_spectrogram_title = 'Mel spectrogram of your audio recording with n_mels=32'
+    mel_spectrogram_title = \
+        'Mel spectrogram of your audio recording with n_mels=32'
     save_librosa_specshow(mel_spectrogram, sr=sample_rate, x_axis='time', 
                           title=mel_spectrogram_title,
                           filename=MEL_SPECTROGRAM_FILENAME)
